@@ -24,7 +24,7 @@ gerun lmp_default -in myfile.in
 >>> my_job.id
 123242
 >>> print(my_job.status())
-Queue Wating
+Queue Waiting
 >>> 
 ```
 
