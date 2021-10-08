@@ -44,8 +44,8 @@ class job:
         self.name = name
         self.resources = {}
         self.add_resource('mem',memory)
-        hrs = math.floor(self.length/60)
-        mins = self.length%60
+        hrs = math.floor(length/60)
+        mins = length%60
         self.add_resource('h_rt',str(hrs) + ':' + str(mins) + ':00')
         self.location = location
         self.modules = []
