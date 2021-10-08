@@ -29,3 +29,7 @@ Queue Waiting
 ```
 
 Hopefully there'd also be tools for inspecting the status of the user's jobs and retrieving the output etc.
+
+## MSc Project
+
+In the summer of 2021, Bowen Zheng, a CDT MSc student completed an MSc project, supervised by me, exploring this idea.  You can see his code and efforts here: https://github.com/SC2020-zbw/MSc_project
