@@ -44,9 +44,13 @@ class job:
         self.name = name
         self.resources = {}
         self.add_resource('mem',memory)
-        hrs = math.floor(length/60)
-        mins = length%60
-        self.add_resource('h_rt',str(hrs) + ':' + str(mins) + ':00')
+        hrs = str(math.floor(length/60))
+        mins = str(length%60)
+        if len(hrs) = 1:
+            hrs = '0' + hrs
+        if len(mins) = 1:
+            mins = '0' + 1
+        self.add_resource('h_rt',hrs + ':' + mins + ':00')
         self.location = location
         self.modules = []
         self.workload = []
