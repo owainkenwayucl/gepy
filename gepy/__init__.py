@@ -51,7 +51,7 @@ class job:
         self.workload = []
 
 
-    def add_resource(name,value):
+    def add_resource(self,name,value):
         self.resources[name] = value
 
     def get_job_script(self):
