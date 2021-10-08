@@ -6,6 +6,7 @@ class job:
         self.length = length
         self.location = location
         self.modules = []
+        self.script = ''
 
     def get_job_script(self):
         import math
@@ -23,6 +24,8 @@ class job:
 
         for a in self.modules:
             script = script + 'module load ' + a + '\n'
+
+        script = script + self.script + '\n'
 
         return script
 
