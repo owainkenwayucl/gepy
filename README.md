@@ -35,10 +35,6 @@ Hopefully there'd also be tools for inspecting the status of the user's jobs and
 At the moment, there is some very basic job script creation code:
 
 ```python
-Kathleen [login02] gepy :) > python3
-Python 3.9.6 (default, Jul  7 2021, 14:01:30) 
-[GCC 4.9.2] on linux
-Type "help", "copyright", "credits" or "license" for more information.
 >>> import gepy
 >>> test_job = gepy.job(name="test")
 >>> test_job.workload.append(gepy.serial_command())
