@@ -4,7 +4,7 @@ class parallel_command:
         self.binary = binary
         self.args = args
 
-    def expand():
+    def expand(self):
         text = '# GEPY Parallel command.\n'
         text = text + 'gerun' + ' ' + self.binary
         for a in self.args:
@@ -18,7 +18,7 @@ class serial_command:
         self.binary = binary
         self.args = args
 
-    def expand():
+    def expand(self):
         text = '# GEPY serial command.\n'
         text = text + self.binary
         for a in self.args:
@@ -31,7 +31,7 @@ class user_script:
     def __init__(self, script=''):
         self.script = script   
 
-    def expand():
+    def expand(self):
         text = '# User supplied shell code.\n'
         text = text + self.script + '\n'
         text = text + '# End user supplied shell code.\n'
