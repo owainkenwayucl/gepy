@@ -8,7 +8,7 @@ class parallel_command:
         text = '# GEPY Parallel command.\n'
         text = text + 'gerun' + ' ' + self.binary
         for a in self.args:
-            text = text + ' ' + args
+            text = text + ' ' + a
         text = text + '\n'
         return text
 
