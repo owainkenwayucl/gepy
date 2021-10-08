@@ -64,7 +64,7 @@ class job:
         for a in self.modules:
             script = script + 'module load ' + a + '\n'
 
-        for a in self.worload:
+        for a in self.workload:
             script = script + a.expand() + '\n'
 
         return script
