@@ -53,7 +53,7 @@ class job:
 
 
     def add_resource(self,name,value):
-        self.resources[name] = value
+        self.resources[name] = str(value)
 
     def get_job_script(self):
         import math
