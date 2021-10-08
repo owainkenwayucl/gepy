@@ -49,7 +49,7 @@ class job:
         if len(hrs) == 1:
             hrs = '0' + hrs
         if len(mins) == 1:
-            mins = '0' + 1
+            mins = '0' + mins
         self.add_resource('h_rt',hrs + ':' + mins + ':00')
         self.location = location
         self.modules = []
