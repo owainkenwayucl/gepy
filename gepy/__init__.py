@@ -20,7 +20,7 @@ class serial_command:
 
     def expand():
         text = '# GEPY serial command.\n'
-        text = text self.binary
+        text = text + self.binary
         for a in self.args:
             text = text + ' ' + args
         text = text + '\n'
