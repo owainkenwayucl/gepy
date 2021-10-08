@@ -1,3 +1,42 @@
+class parallel_command:
+
+    def __init__(self, binary='/usr/bin/hostname', args=[]):
+        self.binary = binary
+        self.args = args
+
+    def expand():
+        text = '# GEPY Parallel command.\n'
+        text = text + 'gerun' + ' ' + self.binary
+        for a in self.args:
+            text = text + ' ' + args
+        text = text + '\n'
+        return text
+
+class serial_command:
+
+    def __init__(self, binary='/usr/bin/hostname', args=[]):
+        self.binary = binary
+        self.args = args
+
+    def expand():
+        text = '# GEPY serial command.\n'
+        text = text self.binary
+        for a in self.args:
+            text = text + ' ' + args
+        text = text + '\n'
+        return text
+
+class user_script:
+
+    def __init__(self, script=''):
+        self.script = script   
+
+    def expand():
+        text = '# User supplied shell code.\n'
+        text = text + self.script + '\n'
+        text = text + '# End user supplied shell code.\n'
+        return text
+
 class job:
 
     def __init__(self, name='gepy_job', memory=1024, length=60, location='.'):
@@ -6,7 +45,7 @@ class job:
         self.length = length
         self.location = location
         self.modules = []
-        self.script = ''
+        self.workload = []
 
     def get_job_script(self):
         import math
@@ -25,7 +64,8 @@ class job:
         for a in self.modules:
             script = script + 'module load ' + a + '\n'
 
-        script = script + self.script + '\n'
+        for a in self.worload:
+            script = script + a.expand() + '\n'
 
         return script
 
