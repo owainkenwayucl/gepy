@@ -108,7 +108,7 @@ class job:
             script = script + '#$ -wd ' + self.location + '\n'
 
         if (self.tasks[0]):
-            script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' str(self.tasks[3]) + '\n'
+            script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' + str(self.tasks[3]) + '\n'
 
         for a in self.modules:
             script = script + 'module load ' + a + '\n'
