@@ -39,7 +39,7 @@ class user_script:
 
 class job:
 
-    def __init__(self, name='gepy_job', memory=1024, length=60, location='.'):
+    def __init__(self, name='gepy_job', memory='1G'', length=60, location='.'):
         import math
         self.name = name
         self.resources = {}
