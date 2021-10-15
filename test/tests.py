@@ -13,6 +13,7 @@ test_job.make_serial()
 print(test_job.get_job_script())
 test_job.make_parallel(mode='smp', slots='12')
 test_job.disable_smt()
+test_job.make_array(start=1, finish=1000, stride=10)
 print(test_job.get_job_script())
 try:
     test_job.make_parallel(mode='mpi', slots='12')

@@ -56,6 +56,10 @@ class job:
         self.slots = 1
         self.parallel_mode = ''
         self.smt = False
+        self.tasks = (False,0,0,0)
+
+    def make_array(self, start=1, finish=1, stride=1):
+        self.tasks = (True,start,finish,stride)
 
     def make_parallel(self, mode='smp', slots=1):
         if (not self.parallel):
@@ -102,6 +106,9 @@ class job:
             script = script + '#$ -cwd\n'
         else:
             script = script + '#$ -wd ' + self.location + '\n'
+
+        if (self.tasks[0]):
+            script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' str(self.tasks[3]) + '\n'
 
         for a in self.modules:
             script = script + 'module load ' + a + '\n'
