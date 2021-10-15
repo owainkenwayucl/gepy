@@ -53,10 +53,10 @@ class job:
         self.modules = []
         self.workload = []
         self.parallel = False
-        self.slots = '1'
+        self.slots = 1
         self.parallel_mode = ''
 
-    def make_parallel(self, mode='smp', slots='1'):
+    def make_parallel(self, mode='smp', slots=1):
         if (not self.parallel):
             self.parallel = True
             self.slots = slots
@@ -64,9 +64,14 @@ class job:
         else:
             if (self.parallel_mode == mode):
                 self.slots = slots
-            else: 
+            else:
+                # The goal here is to provent someone trying to do a hybrid run by making SMP then MPI or vice versa.
                 raise ValueError('Cannot change parallel mode from ' + self.parallel_mode + ' to ' + mode + '.')
 
+    def make_serial(self):
+        self.parallel = False
+        self.parallel_mode = ''
+        self.slots = 1
 
     def add_resource(self,name,value):
         self.resources[name] = str(value)
@@ -78,10 +83,10 @@ class job:
         script = script + '#$ -N ' + self.name + '\n'
 
         if (self.parallel):
-            script = script + '#$ -pe ' + self.parallel_mode + ' ' + self.slots + '\n'
+            script = script + '#$ -pe ' + str(self.parallel_mode) + ' ' + str(self.slots) + '\n'
 
         for a in self.resources.keys():
-            script = script + '#$ -l ' + a + '=' + self.resources[a] + '\n'
+            script = script + '#$ -l ' + str(a) + '=' + str(self.resources[a]) + '\n'
 
         if (self.location == '.'):
             script = script + '#$ -cwd\n'
