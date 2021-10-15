@@ -65,7 +65,7 @@ class job:
             if (self.parallel_mode == mode):
                 self.slots = slots
             else:
-                # The goal here is to provent someone trying to do a hybrid run by making SMP then MPI or vice versa.
+                # The goal here is to prevent someone trying to do a hybrid run by making SMP then MPI or vice versa.
                 raise ValueError('Cannot change parallel mode from ' + self.parallel_mode + ' to ' + mode + '.')
 
     def make_serial(self):
