@@ -2,11 +2,16 @@ def run(command):
     import subprocess
     return subprocess.run(command, capture_output=True, encoding='UTF-8')
     
-def qstat_joblist(filter='*'):
+def qstat_joblist(filter=None):
     import xml.etree.ElementTree as xml
     import gepy
     
-    job_text = run(['/opt/sge/bin/lx-amd64/qstat', '-xml','-u', filter]).stdout
+    qstat_command = ['/opt/sge/bin/lx-amd64/qstat', '-xml']
+    if (filter != None):
+        qstat_command.append('-u')
+        qstat_command.append(filter)
+
+    job_text = run(qstat_command).stdout
 
     tree = xml.fromstring(job_text)
 
