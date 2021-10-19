@@ -121,9 +121,9 @@ class job:
 # Class for job in queue object.        
 class queue_job:
 
-    def __init__(self, status, id, prio, name, owner, stateblock, timeblock, slots, taskinfo):
+    def __init__(self, status, jid, prio, name, owner, stateblock, timeblock, slots, taskinfo):
         self.status = status
-        self.id = id
+        self.jid = jid
         self.prio = prio
         self.name = name
         self.owner = owner
