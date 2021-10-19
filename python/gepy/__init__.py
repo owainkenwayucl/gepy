@@ -118,5 +118,15 @@ class job:
 
         return script
 
-        
+# Class for job in queue object.        
+class queue_job:
 
+    def __init__(self, status, id, prio, name, owner, stateblock, timeblock, taskinfo):
+        self.status = status
+        self.id = id
+        self.prio = prio
+        self.name = name
+        self.owner = owner
+        self.stateblock = stateblock
+        self.timeblock = timeblock    
+        self.taskinfo = taskinfo
