@@ -66,6 +66,8 @@ gerun lmp_any -in in.lammps
 >>> 
 ```
 
+There's also now a submodule called `executor` which is starting to provide Grid Engine functionality, specifically, it can get a list of jobs from `qstat`, and submit the job scripts created by the script creation code.
+
 ## MSc Project
 
 In the summer of 2021, Bowen Zheng, a CDT MSc student completed an MSc project, supervised by me, exploring this idea.  You can see his code and efforts here: https://github.com/SC2020-zbw/MSc_project
