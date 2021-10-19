@@ -4,7 +4,7 @@ def run(command):
     
 def qstat_joblist(filter='*'):
     import xml.etree.ElementTree as xml
-    import gepy.queue_job
+    import gepy
     
     job_text = run(['/opt/sge/bin/lx-amd64/qstat', '-xml','-u', '*']).stdout
 
