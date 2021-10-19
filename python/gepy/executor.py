@@ -5,7 +5,7 @@ def run(command):
 def qstat_joblist(filter='*'):
     import xml.etree.ElementTree as xml
 
-    job_text = gepy.executor.run(['/opt/sge/bin/lx-amd64/qstat', '-xml','-u', '*']).stdout
+    job_text = run(['/opt/sge/bin/lx-amd64/qstat', '-xml','-u', '*']).stdout
 
     tree = xml.fromstring(job_text)
 
