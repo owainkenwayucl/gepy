@@ -43,7 +43,7 @@ def qstat_joblist(filter=None):
 def qsub(jobscript):
     import tempfile
 
-    temp_script = tempfile.mkstemp(prefix='gepy_script', text=True, suffix='.sh')
+    temp_script = tempfile.mkstemp(prefix='gepy_script', text=True, suffix='.sh')[0]
     temp_script.write(jobscript)
     temp_script.close()
     
