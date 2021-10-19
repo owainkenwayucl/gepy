@@ -47,7 +47,7 @@ def qsub(jobscript):
     with open(temp_script, 'w') as ts:
         ts.write(jobscript)
     
-    status = run(['qsub', temp_script.name])
+    status = run(['qsub', path])
 
     if (status.returncode == 0):
         job_id = status.stdout.split()[2]
