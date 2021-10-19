@@ -44,7 +44,7 @@ def qsub(jobscript):
     import tempfile
 
     temp_script, path = tempfile.mkstemp(prefix='gepy_script', text=True, suffix='.sh')
-    with fdopen(temp_script, 'w') as ts:
+    with open(temp_script, 'w') as ts:
         ts.write(jobscript)
     
     status = run(['qsub', temp_script.name])
