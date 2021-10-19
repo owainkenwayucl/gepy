@@ -4,7 +4,8 @@ def run(command):
     
 def qstat_joblist(filter='*'):
     import xml.etree.ElementTree as xml
-
+    import gepy.queue_job
+    
     job_text = run(['/opt/sge/bin/lx-amd64/qstat', '-xml','-u', '*']).stdout
 
     tree = xml.fromstring(job_text)
@@ -28,7 +29,7 @@ def qstat_joblist(filter='*'):
                 taskinfo = subchild.find('tasks').text
             except AttributeError as err:
                 taskinfo = None
-            temp_job = queue_job(status, jid, prio, name, owner, stateblock, timeblock, slots, taskinfo)
+            temp_job = gepy.queue_job(status, jid, prio, name, owner, stateblock, timeblock, slots, taskinfo)
             jobs.append(temp_job)
 
     return jobs
