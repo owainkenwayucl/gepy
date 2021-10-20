@@ -71,6 +71,6 @@ def qsub(jobscript):
         raise InputError(status.stderr)
 
 def qdel(job_id):
-    status = run(['qdel', job_id])
+    status = run(['qdel', str(job_id)])
 
     return status.returncode
