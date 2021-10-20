@@ -39,6 +39,7 @@ def qstat_joblist(filter=None):
 
     return jobs
 
+# This is a horrible kludge because qstat -j is horrid
 def qstat_job(job_id):
     import xml.etree.ElementTree as xml
     import gepy
@@ -50,27 +51,16 @@ def qstat_job(job_id):
     tree = xml.fromstring(job_text)
 
     jobinfo = tree.find("djob_info").find("element")
-    if jobinfo.find('JB_ja_tasks') == None:
-        status = 'pending'
-    else:
-        status = 'running'
-    #status = subchild.attrib['state']
-    jid = job_id
-    prio = jobinfo.find('JB_priority').text
-    name = jobinfo.find('JB_job_name').text
     owner = jobinfo.find('JB_owner').text
-    stateblock = ''
-    if (status == 'pending'):
-        timeblock = jobinfo.find('JB_submission_time').text
-    else:
-        timeblock = jobinfo.find('JAT_start_time').text
-    slots = jobinfo.find('slots').text
-    try:
-        taskinfo = jobinfo.find('tasks').text
-    except AttributeError as err:
-        taskinfo = None
-    temp_job = gepy.queue_job(status, jid, prio, name, owner, stateblock, timeblock, slots, taskinfo)
-    return temp_job
+
+    jobs = []
+    temp_jobs = qstat_joblist(filter=owner)
+
+    for a in temp_jobs:
+        if a.jid == job_id:
+            jobs.append(a)
+
+    return jobs
 
 # Shockingly, qsub does not have xml output.
 def qsub(jobscript):
