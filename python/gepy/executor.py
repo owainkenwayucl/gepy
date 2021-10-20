@@ -45,7 +45,7 @@ def qstat_job(job_id):
     temp_jobs = qstat_joblist(filter="*")
 
     for a in temp_jobs:
-        if a.jid == job_id:
+        if str(a.jid) == str(job_id):
             jobs.append(a)
 
     return jobs
