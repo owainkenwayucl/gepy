@@ -51,9 +51,9 @@ def qstat_job(job_id):
 
     jobinfo = tree.find("djob_info").find("element")
     if jobinfo.find('JB_ja_tasks') == None:
-        status = pending
+        status = 'pending'
     else:
-        status = running
+        status = 'running'
     #status = subchild.attrib['state']
     jid = job_id
     prio = jobinfo.find('JAT_prio').text
