@@ -39,6 +39,39 @@ def qstat_joblist(filter=None):
 
     return jobs
 
+def qstat_job(job_id):
+    import xml.etree.ElementTree as xml
+    import gepy
+    
+    qstat_command = ['/opt/sge/bin/lx-amd64/qstat', '-xml', '-j', str(job_id)]
+
+    job_text = run(qstat_command).stdout
+
+    tree = xml.fromstring(job_text)
+
+    jobinfo = tree.find("djob_info").find("element")
+    if jobinfo.find('JB_ja_tasks') == None:
+        status = pending
+    else:
+        status = running
+    #status = subchild.attrib['state']
+    jid = job_id
+    prio = jobinfo.find('JAT_prio').text
+    name = jobinfo.find('JB_name').text
+    owner = jobinfo.find('JB_owner').text
+    stateblock = jobinfo.find('state').text
+    if (status == 'pending'):
+        timeblock = jobinfo.find('JB_submission_time').text
+    else:
+        timeblock = jobinfo.find('JAT_start_time').text
+    slots = jobinfo.find('slots').text
+    try:
+        taskinfo = jobinfo.find('tasks').text
+    except AttributeError as err:
+        taskinfo = None
+    temp_job = gepy.queue_job(status, jid, prio, name, owner, stateblock, timeblock, slots, taskinfo)
+    return temp_job
+
 # Shockingly, qsub does not have xml output.
 def qsub(jobscript):
     import tempfile
