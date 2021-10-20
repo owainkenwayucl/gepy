@@ -42,7 +42,7 @@ def qstat_joblist(filter=None):
 # This is a horrible kludge because qstat -j is horrid
 def qstat_job(job_id):
     jobs = []
-    temp_jobs = qstat_joblist(filter="*"")
+    temp_jobs = qstat_joblist(filter="*")
 
     for a in temp_jobs:
         if a.jid == job_id:
