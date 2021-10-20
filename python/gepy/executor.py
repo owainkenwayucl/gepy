@@ -57,9 +57,9 @@ def qstat_job(job_id):
     #status = subchild.attrib['state']
     jid = job_id
     prio = jobinfo.find('JB_priority').text
-    name = jobinfo.find('JB_name').text
+    name = jobinfo.find('JB_job_name').text
     owner = jobinfo.find('JB_owner').text
-    stateblock = jobinfo.find('state').text
+    stateblock = ''
     if (status == 'pending'):
         timeblock = jobinfo.find('JB_submission_time').text
     else:
