@@ -56,7 +56,7 @@ def qstat_job(job_id):
         status = 'running'
     #status = subchild.attrib['state']
     jid = job_id
-    prio = jobinfo.find('JAT_prio').text
+    prio = jobinfo.find('JB_priority').text
     name = jobinfo.find('JB_name').text
     owner = jobinfo.find('JB_owner').text
     stateblock = jobinfo.find('state').text
