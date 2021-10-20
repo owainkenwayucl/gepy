@@ -44,6 +44,8 @@ def qstat_job(job_id):
     jobs = []
     temp_jobs = qstat_joblist(filter="*")
 
+    job_id = str(job_id).split('.')[0] # remove task info
+
     for a in temp_jobs:
         if str(a.jid) == str(job_id):
             jobs.append(a)
