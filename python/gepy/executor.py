@@ -41,20 +41,8 @@ def qstat_joblist(filter=None):
 
 # This is a horrible kludge because qstat -j is horrid
 def qstat_job(job_id):
-    import xml.etree.ElementTree as xml
-    import gepy
-    
-    qstat_command = ['/opt/sge/bin/lx-amd64/qstat', '-xml', '-j', str(job_id)]
-
-    job_text = run(qstat_command).stdout
-
-    tree = xml.fromstring(job_text)
-
-    jobinfo = tree.find("djob_info").find("element")
-    owner = jobinfo.find('JB_owner').text
-
     jobs = []
-    temp_jobs = qstat_joblist(filter=owner)
+    temp_jobs = qstat_joblist(filter="*"")
 
     for a in temp_jobs:
         if a.jid == job_id:
