@@ -67,3 +67,8 @@ def qsub(jobscript):
         return job_id # maybe we should return a job object?
     else:
         raise InputError(status.stderr)
+
+def qdel(job_id):
+    status = run(['qdel', job_id])
+
+    return status.returncode
