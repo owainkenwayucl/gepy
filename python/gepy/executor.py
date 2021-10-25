@@ -53,15 +53,22 @@ def qstat_job(job_id):
     return jobs
 
 # Shockingly, qsub does not have xml output.
-def qsub(jobscript):
+def qsub(jobscript, depend=None):
     import tempfile
     import os
 
     temp_script, path = tempfile.mkstemp(prefix='gepy_script', text=True, suffix='.sh')
     with open(temp_script, 'w') as ts:
         ts.write(jobscript)
-    
-    status = run(['qsub', path])
+
+    command = ['qsub']
+    if depend != None:
+        command.append('-hold_jid')
+        command.append(str(depend))
+
+    command.append(path)
+
+    status = run(command)
 
     if (status.returncode == 0):
         job_id = status.stdout.split()[2]
