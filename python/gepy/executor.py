@@ -73,7 +73,11 @@ def qsub(jobscript, depend=None):
     if (status.returncode == 0):
         job_id = status.stdout.split()[2]
         os.remove(path)
-        return job_id # maybe we should return a job object?
+        split_id = job_id.split('.')
+        if len(split_id) == 1:
+            return job_id # maybe we should return a job object?
+        else:
+            return split_id[0],split_id[1]
     else:
         raise ValueError(status.stderr)
 
