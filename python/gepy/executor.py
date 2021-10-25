@@ -75,7 +75,7 @@ def qsub(jobscript, depend=None):
         os.remove(path)
         return job_id # maybe we should return a job object?
     else:
-        raise InputError(status.stderr)
+        raise ValueError(status.stderr)
 
 def qdel(job_id):
     status = run(['qdel', str(job_id)])
