@@ -22,7 +22,7 @@ class serial_command:
         text = '\n# GEPY serial command.\n'
         text = text + self.binary
         for a in self.args:
-            text = text + ' ' + args
+            text = text + ' ' + a
         text = text + '\n'
         return text
 
