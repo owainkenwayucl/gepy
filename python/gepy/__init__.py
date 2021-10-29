@@ -57,6 +57,7 @@ class job:
         self.parallel_mode = ''
         self.smt = False
         self.tasks = (False,0,0,0)
+        self.blank_env = False
 
     def make_array(self, start=1, finish=1, stride=1):
         self.tasks = (True,start,finish,stride)
@@ -84,6 +85,12 @@ class job:
     def disable_smt(self):
         self.smt = False
 
+    def enable_blank_env(self):
+        self.blank_env = True
+
+    def disable_blank_env(self):
+        self.blank_env = False
+
     def add_resource(self,name,value):
         self.resources[name] = str(value)
 
@@ -109,6 +116,9 @@ class job:
 
         if (self.tasks[0]):
             script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' + str(self.tasks[3]) + '\n'
+
+        if (self.blank_env):
+            script = script + 'module purge\n'
 
         for a in self.modules:
             script = script + 'module load ' + a + '\n'
