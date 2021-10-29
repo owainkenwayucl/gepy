@@ -116,6 +116,9 @@ class job:
 
         if (self.tasks[0]):
             script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' + str(self.tasks[3]) + '\n'
+            
+        if (self.smt):
+            script = script + 'export OMP_NUM_THREADS=2\n'
 
         if (self.blank_env):
             script = script + 'module purge\n'
