@@ -8,7 +8,7 @@ class parallel_command:
         text = '\n# GEPY Parallel command.\n'
         text = text + 'gerun' + ' ' + self.binary
         for a in self.args:
-            text = text + ' ' + a
+            text = text + ' ' + str(a)
         text = text + '\n'
         return text
 
@@ -22,7 +22,7 @@ class serial_command:
         text = '\n# GEPY serial command.\n'
         text = text + self.binary
         for a in self.args:
-            text = text + ' ' + a
+            text = text + ' ' + str(a)
         text = text + '\n'
         return text
 
@@ -116,7 +116,7 @@ class job:
 
         if (self.tasks[0]):
             script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' + str(self.tasks[3]) + '\n'
-            
+
         if (self.smt):
             script = script + 'export OMP_NUM_THREADS=2\n'
 
