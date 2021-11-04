@@ -17,9 +17,9 @@ def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_
 
     if platform=='basic':
         run_args=[]
-    else if platform=='userintel':
+    elif platform=='userintel':
         run_args=['-sf', 'intel']
-    else if platform=='gpu'
+    elif platform=='gpu':
         if gpus==None:
             raise ValueError('Asked for GPU LAMMPS but did not ask for GPUs.')
         else:
