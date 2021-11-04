@@ -7,9 +7,12 @@ def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_
     r.modules.append('gcc-libs/4.9.2')
     r.modules.append('compilers/intel/2018')
     r.modules.append('mpi/intel/2018')
-    r.modules.append('lammps/7Aug19/'+ platform +'/intel-2018')
+
     if not gpus==None:
         r.add_resource('gpu', str(gpus))
+        r.module.append('cuda/9.0.176-patch4')
+
+    r.modules.append('lammps/7Aug19/'+ platform +'/intel-2018')
 
     if smt:
         r.enable_smt()
