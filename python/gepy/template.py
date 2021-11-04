@@ -1,7 +1,7 @@
 import gepy
 
 def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_job', memory='4G', length=120, location='.', platform='basic', smt=False, gpus=None):
-    r = gepy.job(self, name=name, memory=memory, length=length location=location)
+    r = gepy.job(self, name=name, memory=memory, length=length, location=location)
     r.make_parallel(mode='mpi', slots=cores)
     r.enable_blank_env()
     r.modules.append('gcc-libs/4.9.2')
