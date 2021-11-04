@@ -27,7 +27,11 @@ def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_
     else:
         raise ValueError('Invalid LAMMPS build type:' + platform)
 
-    run_args.append('-in', inputfile, '-log', logfile)
+    run_args.append('-in')
+    run_args.append(inputfile)
+    run_args.append('-log')
+    run_args.append(logfile)
+
 
     r.workload.append(gepy.parallel_command(binary='lmp_default', args=run_args))
 
