@@ -1,5 +1,23 @@
 import gepy
 
+def python_job(cores=1, name='gepy', memory='4G', length=120, location='.', script=''):
+    import sys
+    from distutils import sysconfig as sysc
+    executable = sys.executable
+    ld_lib_path = sysc.get_config_var('LIBDIR')
+
+    r = gepy.job(name=name, memory=memory, length=length, location=location)
+    r.shebang = '#!' + executable
+
+# kludge
+    k = '# -v LD_LIBRARY_PATH=' + ld_lib_path + ':/shared/ucl/apps/gcc/4.9.2/lib:/shared/ucl/apps/gcc/4.9.2/lib64z\n'
+    r.workload.append(gepy.user_script(k))
+
+    r.workload.append(gepy.user_script(script + '\n'))
+
+    return r
+
+
 def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_job', memory='4G', length=120, location='.', platform='basic', smt=False, gpus=None):
     r = gepy.job(name=name, memory=memory, length=length, location=location)
     r.make_parallel(mode='mpi', slots=cores)
