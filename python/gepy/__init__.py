@@ -60,6 +60,7 @@ class job:
         self.blank_env = False
         self.shebang = '#!/bin/bash -l'
         self.account = None
+        self.variables = {}
 
     def make_array(self, start=1, finish=1, stride=1):
         self.tasks = (True,start,finish,stride)
@@ -128,6 +129,9 @@ class job:
 
         if (self.smt):
             script = script + 'export OMP_NUM_THREADS=2\n'
+
+        for a in self.variables.keys():
+            script = script + '#$ -v ' + a + '=' + str(self.variables[a]) + '\n'
 
         if (self.blank_env):
             script = script + 'module purge\n'

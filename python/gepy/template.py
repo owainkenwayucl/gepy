@@ -9,9 +9,7 @@ def python_job(cores=1, name='gepy', memory='4G', length=120, location='.', scri
     r = gepy.job(name=name, memory=memory, length=length, location=location)
     r.shebang = '#!' + executable
 
-# kludge
-    k = '#$ -v LD_LIBRARY_PATH=' + ld_lib_path + ':/shared/ucl/apps/gcc/4.9.2/lib:/shared/ucl/apps/gcc/4.9.2/lib64\n'
-    r.workload.append(gepy.user_script(k))
+    r.variables['LD_LIBRARY_PATH'] = ld_lib_path + ':/shared/ucl/apps/gcc/4.9.2/lib:/shared/ucl/apps/gcc/4.9.2/lib64'
 
     r.workload.append(gepy.user_script(script + '\n'))
 
