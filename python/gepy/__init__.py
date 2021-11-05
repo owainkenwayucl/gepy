@@ -59,6 +59,7 @@ class job:
         self.tasks = (False,0,0,0)
         self.blank_env = False
         self.shebang = '#!/bin/bash -l'
+        self.account = None
 
     def make_array(self, start=1, finish=1, stride=1):
         self.tasks = (True,start,finish,stride)
@@ -95,6 +96,9 @@ class job:
     def add_resource(self,name,value):
         self.resources[name] = str(value)
 
+    def set_account(self, project, account):
+        self.account=(project, account)
+
     def get_job_script(self):
         import math
         script = self.shebang + '\n'
@@ -114,6 +118,10 @@ class job:
             script = script + '#$ -cwd\n'
         else:
             script = script + '#$ -wd ' + self.location + '\n'
+
+        if not (self.account == None):
+            script = script + '#$ -P' + self.account[0] + '\n'
+            script = script + '#$ -A' + self.account[1] + '\n'
 
         if (self.tasks[0]):
             script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' + str(self.tasks[3]) + '\n'
