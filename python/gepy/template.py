@@ -5,6 +5,7 @@ def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_
     r.make_parallel(mode='mpi', slots=cores)
     r.enable_blank_env()
     r.modules.append('gcc-libs/4.9.2')
+    r.modules.append('gerun')
     r.modules.append('compilers/intel/2018')
     r.modules.append('mpi/intel/2018')
 
