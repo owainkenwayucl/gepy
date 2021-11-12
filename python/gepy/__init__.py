@@ -149,11 +149,11 @@ class queue_job:
 
     def __init__(self, status, jid, prio, name, owner, stateblock, timeblock, slots, taskinfo):
         self.status = status
-        self.jid = jid
+        self.jid = int(jid)
         self.prio = prio
         self.name = name
         self.owner = owner
         self.stateblock = stateblock
         self.timeblock = timeblock
-        self.slots = slots
+        self.slots = int(slots)
         self.taskinfo = taskinfo
