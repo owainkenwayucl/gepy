@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import gepy.executor as gepy
+import gepy.executor as ge
 
 jobs = ge.qstat_joblist(filter='*')
 total_running_jobs = 0
