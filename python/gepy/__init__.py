@@ -61,6 +61,16 @@ class job:
         self.shebang = '#!/bin/bash -l'
         self.account = None
         self.variables = {}
+        self.node_classes = None
+        self.node_restricted = False
+
+    def set_node_classes(self, nc):
+        self.node_classes = str(nc).strip()
+        self.node_restricted = True
+
+    def unset_node_classes(self):
+        self.node_classes = None
+        self.node_restricted = False
 
     def make_array(self, start=1, finish=1, stride=1):
         self.tasks = (True,start,finish,stride)
@@ -126,6 +136,9 @@ class job:
 
         if (self.tasks[0]):
             script = script + '#$ -t ' + str(self.tasks[1]) + '-' + str(self.tasks[2]) + ':' + str(self.tasks[3]) + '\n'
+
+        if (self.node_restricted):
+            script = script + '#$ -ac allow=' + str(self.node_classes) + '\n'
 
         if (self.smt):
             script = script + 'export OMP_NUM_THREADS=2\n'
