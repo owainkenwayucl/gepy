@@ -11,7 +11,7 @@ import gepy.executor
 compiler_module = 'compilers/nvhpc/21.11'
 repo = 'https://github.com/UCL-RITS/pi_examples.git'
 
-if len(sys.argv > 1):
+if (len(sys.argv) > 1):
     compiler_module = sys.argv[1]
 
 print('Generating job scripts for compiler module: ' + compiler_module)
