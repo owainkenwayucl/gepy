@@ -16,12 +16,11 @@ if (len(sys.argv) > 1):
 
 print('Generating job scripts for compiler module: ' + compiler_module)
 
-template_job.add_resource('gpu','1')
-
 template_job = gepy.job(name='nvtest')
 template_job.modules.append('personal-modules')
 template_job.modules.append('testing-modules')
 template_job.modules.append(compiler_module)
+template_job.add_resource('gpu','1')
 
 tmp_dir = 'nvtest_'+str(time.time())
 os.mkdir(tmp_dir)
