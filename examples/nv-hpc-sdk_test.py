@@ -27,7 +27,7 @@ os.mkdir(tmp_dir)
 
 template_job.location=os.getcwd() + '/' + tmp_dir
 
-status = executor.run('git clone ' + repo + ' ' + tmp_dir + '/pi_examples')
+status = gepy.executor.run('git clone ' + repo + ' ' + tmp_dir + '/pi_examples')
 
 if (status.returncode != 0):
     sys.exit('Error cloning repo: ' + status.stderr)
