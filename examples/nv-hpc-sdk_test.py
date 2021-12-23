@@ -22,6 +22,7 @@ template_job.modules.append('personal-modules')
 template_job.modules.append('testing-modules')
 template_job.modules.append(compiler_module)
 template_job.add_resource('gpu','1')
+template_job.set_node_classes('EFL')
 
 tmp_dir = 'nvtest_'+str(time.time())
 os.mkdir(tmp_dir)
