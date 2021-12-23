@@ -77,7 +77,7 @@ openacc_job.name = template_job.name + 'openacc'
 print('Submitting jobs')
 
 j,t = gepy.executor.qsub(doconc_job.get_job_script())
-j,t = gepy.executor.qsub(cudaf.get_job_script())
+j,t = gepy.executor.qsub(cudaf_job.get_job_script())
 j,t = gepy.executor.qsub(openmp_job.get_job_script())
 j,t = gepy.executor.qsub(openacc_job.get_job_script())
 
