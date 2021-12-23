@@ -26,7 +26,7 @@ template_job.modules.append(compiler_module)
 tmp_dir = 'nvtest_'+str(time.time())
 os.mkdir(tmp_dir)
 
-template_job.location=os.getcwd() + '/' + tmp_dir)
+template_job.location=os.getcwd() + '/' + tmp_dir
 
 status = executor.run('git clone ' + repo + ' ' + tmp_dir + '/pi_examples')
 
