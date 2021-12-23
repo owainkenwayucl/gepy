@@ -4,6 +4,7 @@
 
 import sys
 import os
+import copy
 import time
 import gepy
 import gepy.executor
