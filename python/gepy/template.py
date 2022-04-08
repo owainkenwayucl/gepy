@@ -23,7 +23,7 @@ def hpl_job(name='gepy_hpl', inputsource=None, location='.', processes=4, thread
     r.modules.append('gcc-libs/4.9.2')
     r.modules.append('gerun')
     r.modules.append('compilers/intel/2018')
-    r.modules.append('mpi/intel/2018
+    r.modules.append('mpi/intel/2018')
     r.modules.append('personal-modules')
     r.modules.append('hpl')    
 
