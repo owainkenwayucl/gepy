@@ -15,6 +15,32 @@ def python_job(cores=1, name='gepy', memory='4G', length=120, location='.', scri
 
     return r
 
+def hpl_job(name='gepy_hpl', inputsource=None, location='.', processes=4, threads=1, memory='4G', burnout=False, length=120, smt=False):
+    r = gepy.job(name=name, memory=memory, length=length, location=location)
+    r.make_parallel(mode='mpi', slots=processes)
+    r.enable_blank_env()
+    r.enable_blank_env()
+    r.modules.append('gcc-libs/4.9.2')
+    r.modules.append('gerun')
+    r.modules.append('compilers/intel/2018')
+    r.modules.append('mpi/intel/2018
+    r.modules.append('personal-modules')
+    r.modules.append('hpl')    
+
+    if smt:
+        r.enable_smt()
+        r.workload.append(gepy.serial_command(binary='export', args=['OMP_NUM_THREADS=2']))
+
+    if not inputsource==None:
+        r.workload.append(gepy.serial_command(binary='ln', args=['-s', inputsource, './HPL.dat']))
+
+    if burnout:
+        r.workload.append(gepy.user_script('while true; do\n'))
+
+    r.workload.append(gepy.parallel_command(binary='xhpl', args=['>', '/dev/null']))
+
+    if burnout:
+        r.workload.append(gepy.user_script('done\n'))
 
 def lammps_job(inputfile=None, logfile='log.lammps', cores=1, name='gepy_lammps_job', memory='4G', length=120, location='.', platform='basic', smt=False, gpus=None):
     r = gepy.job(name=name, memory=memory, length=length, location=location)
